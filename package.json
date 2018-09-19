@@ -7,7 +7,14 @@
   "author": "jasonslyvia <jasonslyvia@gmail.com>",
   "license": "AGPL-3.0",
   "private": false,
+  "scripts": {
+    "start": "nodemon index.js"
+  },
   "dependencies": {
-    "koa": "^2.5.3"
+    "koa": "^2.5.3",
+    "koa-router": "^7.4.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.4"
   }
 }

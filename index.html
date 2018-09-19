@@ -4,9 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>performance lab - debug.tips</title>
+  <title>Performance Lab - debug.tips</title>
   <style>
-    .facade-minimal{position:relative;margin:24px 0;padding:64px 16px 10px 16px;box-shadow:0 5px 10px rgba(0,0,0,0.1);font-family:sans-serif;color:#454545;border-radius:3px;overflow-x:hidden}.facade-minimal:before{content:"";position:absolute;display:block;top:-1px;left:-1px;right:-1px;height:56px;border-bottom:1px solid rgba(0,0,0,0.05);border-radius:3px 3px 0 0;background:url('data:image/svg+xml;charset=utf-8,<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg version="1.1" id="minimal-browser-button" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="16px" height="16px" viewBox="0 0 16 16" enable-background="new 0 0 16 16" xml:space="preserve"><g id="Ellipse_1"><g><circle fill-rule="evenodd" clip-rule="evenodd" fill="%23B3B3B3" cx="8" cy="8" r="5"/></g></g></svg>') 16px 22px no-repeat,url('data:image/svg+xml;charset=utf-8,<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg version="1.1" id="minimal-browser-button" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="16px" height="16px" viewBox="0 0 16 16" enable-background="new 0 0 16 16" xml:space="preserve"><g id="Ellipse_1"><g><circle fill-rule="evenodd" clip-rule="evenodd" fill="%23B3B3B3" cx="8" cy="8" r="5"/></g></g></svg>') 32px 22px no-repeat,url('data:image/svg+xml;charset=utf-8,<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg version="1.1" id="minimal-browser-button" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="16px" height="16px" viewBox="0 0 16 16" enable-background="new 0 0 16 16" xml:space="preserve"><g id="Ellipse_1"><g><circle fill-rule="evenodd" clip-rule="evenodd" fill="%23B3B3B3" cx="8" cy="8" r="5"/></g></g></svg>') 48px 22px no-repeat,url('data:image/svg+xml;charset=utf-8,<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg version="1.1" id="minimal-browser-settings" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="16px" height="16px" viewBox="0 0 16 16" enable-background="new 0 0 16 16" xml:space="preserve"><g id="Menu_icon"><g><path fill-rule="evenodd" clip-rule="evenodd" fill="%23B3B3B3" d="M1,1v3h14V1H1z M1,10h14V7H1V10z M1,16h14v-3H1V16z"/></g></g></svg>') right 16px top 22px no-repeat,#e8e8e8}.facade-minimal:after{content:attr(data-url);position:absolute;padding:2px 16px 0 32px;top:16px;height:24px;left:80px;right:48px;border-radius:3px;box-shadow:inset 0 1px 1px -1px rgba(0,0,0,0.5);font-size:12px;line-height:24px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;direction:rtl;text-align:left;background:url('data:image/svg+xml;charset=utf-8,<svg version="1.1" id="Refresh_icon_1_" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="16px" height="16px" viewBox="0 0 16 16" enable-background="new 0 0 16 16" xml:space="preserve"><g id="minimal-browser-refresh"><g><path fill-rule="evenodd" clip-rule="evenodd" fill="%23B3B3B3" d="M12.5,10.9l2.5-3h-1.7C13.2,4.6,10.7,2,7.7,2C4.5,2,2,4.7,2,8c0,3.3,2.5,6,5.7,6c1.3,0,2.5-0.5,3.5-1.3l-1-1.1c-0.7,0.5-1.6,0.9-2.5,0.9c-2.3,0-4.2-2-4.2-4.5s1.9-4.5,4.2-4.5c2.3,0,4.2,1.9,4.2,4.4h-2L12.5,10.9z"/></g></g></svg>') 8px 6px no-repeat,#FFFFFF}
+    .facade-minimal{position:relative;margin:24px 0;padding:54px 0 0;box-shadow:0 5px 10px rgba(0,0,0,0.1);font-family:sans-serif;color:#454545;border-radius:3px;overflow-x:hidden}.facade-minimal:before{content:"";position:absolute;display:block;top:-1px;left:-1px;right:-1px;height:56px;border-bottom:1px solid rgba(0,0,0,0.05);border-radius:3px 3px 0 0;background:url('data:image/svg+xml;charset=utf-8,<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg version="1.1" id="minimal-browser-button" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="16px" height="16px" viewBox="0 0 16 16" enable-background="new 0 0 16 16" xml:space="preserve"><g id="Ellipse_1"><g><circle fill-rule="evenodd" clip-rule="evenodd" fill="%23B3B3B3" cx="8" cy="8" r="5"/></g></g></svg>') 16px 22px no-repeat,url('data:image/svg+xml;charset=utf-8,<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg version="1.1" id="minimal-browser-button" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="16px" height="16px" viewBox="0 0 16 16" enable-background="new 0 0 16 16" xml:space="preserve"><g id="Ellipse_1"><g><circle fill-rule="evenodd" clip-rule="evenodd" fill="%23B3B3B3" cx="8" cy="8" r="5"/></g></g></svg>') 32px 22px no-repeat,url('data:image/svg+xml;charset=utf-8,<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg version="1.1" id="minimal-browser-button" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="16px" height="16px" viewBox="0 0 16 16" enable-background="new 0 0 16 16" xml:space="preserve"><g id="Ellipse_1"><g><circle fill-rule="evenodd" clip-rule="evenodd" fill="%23B3B3B3" cx="8" cy="8" r="5"/></g></g></svg>') 48px 22px no-repeat,url('data:image/svg+xml;charset=utf-8,<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg version="1.1" id="minimal-browser-settings" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="16px" height="16px" viewBox="0 0 16 16" enable-background="new 0 0 16 16" xml:space="preserve"><g id="Menu_icon"><g><path fill-rule="evenodd" clip-rule="evenodd" fill="%23B3B3B3" d="M1,1v3h14V1H1z M1,10h14V7H1V10z M1,16h14v-3H1V16z"/></g></g></svg>') right 16px top 22px no-repeat,#e8e8e8}.facade-minimal:after{content:attr(data-url);position:absolute;padding:2px 16px 0 32px;top:16px;height:24px;left:80px;right:48px;border-radius:3px;box-shadow:inset 0 1px 1px -1px rgba(0,0,0,0.5);font-size:12px;line-height:24px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;direction:rtl;text-align:left;background:url('data:image/svg+xml;charset=utf-8,<svg version="1.1" id="Refresh_icon_1_" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="16px" height="16px" viewBox="0 0 16 16" enable-background="new 0 0 16 16" xml:space="preserve"><g id="minimal-browser-refresh"><g><path fill-rule="evenodd" clip-rule="evenodd" fill="%23B3B3B3" d="M12.5,10.9l2.5-3h-1.7C13.2,4.6,10.7,2,7.7,2C4.5,2,2,4.7,2,8c0,3.3,2.5,6,5.7,6c1.3,0,2.5-0.5,3.5-1.3l-1-1.1c-0.7,0.5-1.6,0.9-2.5,0.9c-2.3,0-4.2-2-4.2-4.5s1.9-4.5,4.2-4.5c2.3,0,4.2,1.9,4.2,4.4h-2L12.5,10.9z"/></g></g></svg>') 8px 6px no-repeat,#FFFFFF}
   </style>
   <style>
     html, body { margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
@@ -19,63 +19,386 @@
 <body>
   <div class="left">
     <h1>Performance Lab</h1>
-    <p>a set of devised scenarios to demonstrate what performance metrics are like for different situation</p>
+    <p>A set of devised scenarios to demonstrate what performance metrics are like for different situation</p>
     <a href="#">Reset</a>
     <ul>
-      <li><a href="#slow-html" data-delay="2000">slow HTML</a></li>
+      <li>
+          Server Render
+          <ul>
+            <li><a href="#slow-html" data-type="delay" data-value="2000" data-file="html">Slow HTML</a></li>
+            <li><a href="#slow-js" data-type="delay" data-value="2000" data-file="js">Slow JavaScript</a></li>
+            <li><a href="#slow-css" data-type="delay" data-value="2000" data-file="css">Slow CSS</a></li>
+            <li><a href="#slow-image" data-type="delay" data-value="2000" data-file="jpg">Slow Image</a></li>
+          </ul>
+      </li>
+      <li>
+          Client Render
+          <ul>
+            <li>TBD</li>
+          </ul>
+      </li>
     </ul>
   </div>
   <div class="right">
-    <div class="facade-minimal" data-url="about:blank" id="browser">
-      <iframe id="iframe" seamless src="./scenarios/starter.html"></iframe>
+    <div class="facade-minimal" data-url="index.html" id="browser">
+      <iframe id="iframe" seamless src="about:blank"></iframe>
     </div>
     <span class="timer">
       <span class="label" id="label">Idle</span>
       <span class="value" id="time">-</span>
     </span>
+    <div id="mountNode"></div>
   </div>
   <script>
-    let relativeStart;
-    let loaded = false;
+    const baseURL = '/demo/views/index.html';
+    loadURL(baseURL);
+
+    let rafTimer = null;
+    var chart = null;
+
+    function loadURL(url) {
+      if (window.chart) {
+        window.chart.destroy();
+      }
+
+      label.textContent = 'Loading';
+
+      const newIframe = document.createElement('iframe');
+      newIframe.seamless = true;
+      newIframe.onload = handleIframeLoad;
+      newIframe.src = url;
+      newIframe.id = 'iframe';
+
+      const oldFrame = document.getElementById('iframe');
+      oldFrame.parentNode.replaceChild(newIframe, oldFrame);
+    }
 
     window.addEventListener('hashchange', () => {
       const hash = location.hash.slice(1);
-      const btn = document.querySelector(`[href="#${hash}"]`);
-
-      let rafTimer = null;
 
       if (hash === '') {
-        iframe.src = './scenarios/starter.html';
-        browser.setAttribute('data-url', 'about:blank');
-        label.textContent = 'Idle';
-        time.textContent = '-';
+        loadURL(baseURL);
       } else {
+        const btn = document.querySelector(`[href="#${hash}"]`);
+
+        document.cookie = `config=${JSON.stringify(btn.dataset)}`;
+
         browser.setAttribute('data-url', `${hash}.html`);
-
-        iframe.addEventListener('load', () => {
-          if (iframe.contentWindow.location.href !== '/') {
-            loaded = true;
-            time.textContent = iframe.contentWindow.performance.now();
-            label.textContent = 'Loaded';
-            cancelAnimationFrame(rafTimer);
-          }
-        });
-
-        label.textContent = 'Loading';
-        loaded = false;
-        relativeStart = iframe.contentWindow.performance.now();
-        iframe.src = `./scenarios/${hash}.html${btn.getAttribute('data-delay') ? `?delay=${btn.getAttribute('data-delay')}` : ''}`;
-
+        loadURL(`${hash}.html`);
         rafTimer = requestAnimationFrame(updateTimer);
       }
     });
 
     function updateTimer() {
-      if (loaded) {
-        return cancelAnimationFrame(rafTimer);
-      }
-      time.textContent = iframe.contentWindow.performance.now() - relativeStart;
+      time.textContent = iframe.contentWindow.performance.now();
       rafTimer = requestAnimationFrame(updateTimer);
+    }
+
+    function handleIframeLoad() {
+      time.textContent = iframe.contentWindow.performance.now();
+      label.textContent = 'Loaded';
+      cancelAnimationFrame(rafTimer);
+      deleteAllCookies();
+      chart = render(extractMetrics(iframe.contentWindow.performance.getEntries(), iframe.contentWindow.performance.timeOrigin));
+    }
+
+    function deleteAllCookies() {
+      const cookies = document.cookie.split(";");
+
+      for (let i = 0; i < cookies.length; i++) {
+        const cookie = cookies[i];
+        const eqPos = cookie.indexOf("=");
+        const name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+        document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
+      }
+    }
+  </script>
+  <script>
+    var MetricType;
+    (function (MetricType) {
+        MetricType["Duration"] = "duration";
+        MetricType["Interval"] = "interval";
+    })(MetricType || (MetricType = {}));
+    var DurationType;
+    (function (DurationType) {
+        DurationType["Networking"] = "networking";
+        DurationType["Server"] = "server";
+        DurationType["Client"] = "client";
+    })(DurationType || (DurationType = {}));
+
+    const INTERVAL_METRICS = [{
+            name: 'load',
+            key: 'duration'
+        }, {
+            name: 'domInteractive',
+            key: 'domInteractive'
+        }, {
+            name: 'domContentLoaded',
+            key: 'domContentLoadedEventStart'
+        }, {
+            name: 'timeToFirstByte',
+            key: 'responseStart'
+        }];
+    const DURATION_METRICS = [{
+            name: 'redirect',
+            startKey: 'redirectStart',
+            endKey: 'redirectEnd',
+            type: DurationType.Networking
+        }, {
+            name: 'unloadEvent',
+            startKey: 'unloadEventStart',
+            endKey: 'unloadEventEnd',
+            type: DurationType.Client,
+        }, {
+            name: 'appcache',
+            startKey: 'fetchStart',
+            endKey: 'domainLookupStart',
+            type: DurationType.Networking
+        }, {
+            name: 'dnsLookup',
+            startKey: 'domainLookupStart',
+            endKey: 'domainLookupEnd',
+            type: DurationType.Networking
+        }, {
+            name: 'stalled',
+            startKey: 'fetchStart',
+            endKey: 'requestStart',
+            type: DurationType.Networking
+        }, {
+            name: 'connect',
+            startKey: 'connectStart',
+            endKey: 'connectEnd',
+            type: DurationType.Networking
+        }, {
+            name: 'ssl',
+            startKey: 'secureConnectionStart',
+            endKey: 'connectEnd',
+            type: DurationType.Networking
+        }, {
+            name: 'request',
+            startKey: 'requestStart',
+            endKey: 'responseStart',
+            type: DurationType.Server
+        }, {
+            name: 'response',
+            startKey: 'responseStart',
+            endKey: 'responseEnd',
+            type: DurationType.Server
+        }, {
+            name: 'processing',
+            startKey: 'responseEnd',
+            endKey: 'domComplete',
+            type: DurationType.Client
+        }, {
+            name: 'domReadyEvent',
+            startKey: 'domContentLoadedEventStart',
+            endKey: 'domContentLoadedEventEnd',
+            type: DurationType.Client
+        }, {
+            name: 'loadEvent',
+            startKey: 'loadEventStart',
+            endKey: 'loadEventEnd',
+            type: DurationType.Client
+        }];
+
+    function extractMetrics(timing, timeOrigin) {
+        const metrics = [];
+        const navTiming = timing.filter(t => t.entryType === 'navigation')[0];
+        const paintTiming = timing.filter(t => t.entryType === 'paint');
+        INTERVAL_METRICS.forEach(metric => {
+            metrics.push({
+                name: metric.name,
+                type: MetricType.Interval,
+                time: navTiming[metric.key],
+                start: timeOrigin,
+                end: timeOrigin + navTiming[metric.key],
+            });
+        });
+        if (paintTiming.length) {
+            const firstPaint = paintTiming.filter(t => t.name === 'first-paint')[0].startTime;
+            const firstContentfulPaint = paintTiming.filter(t => t.name === 'first-contentful-paint')[0].startTime;
+            metrics.push({
+                name: 'firstPaint',
+                type: MetricType.Interval,
+                time: firstPaint,
+                start: timeOrigin,
+                end: timeOrigin + firstPaint,
+            });
+            metrics.push({
+                name: 'firstContentfulPaint',
+                type: MetricType.Interval,
+                time: firstContentfulPaint,
+                start: timeOrigin,
+                end: timeOrigin + firstContentfulPaint,
+            });
+        }
+        DURATION_METRICS.forEach(metric => {
+            const start = timeOrigin + navTiming[metric.startKey];
+            const end = timeOrigin + navTiming[metric.endKey];
+            if (metric.name === 'ssl' && start === 0) {
+                metrics.push({
+                    name: metric.name,
+                    type: MetricType.Duration,
+                    time: 0,
+                    start: timeOrigin,
+                    end: timeOrigin,
+                    durationType: metric.type,
+                });
+            }
+            else {
+                metrics.push({
+                    name: metric.name,
+                    type: MetricType.Duration,
+                    time: end - start,
+                    start,
+                    end,
+                    durationType: metric.type,
+                });
+            }
+        });
+        return metrics;
+    }
+  </script>
+  <script src="https://gw.alipayobjects.com/os/antv/pkg/_antv.g2-3.2.7-beta.4/dist/g2.min.js"></script>
+  <script src="https://gw.alipayobjects.com/os/antv/pkg/_antv.data-set-0.8.9/dist/data-set.min.js"></script>
+  <script>
+    function render(rawData) {
+      var start = rawData.find(d => d.name === 'redirect').start;
+      var chart = new G2.Chart({
+        container: 'mountNode',
+        forceFit: true,
+        height: 400,
+        padding: [50, 100, 50, 150]
+      });
+
+      var ttfb = rawData.find(d => d.name === 'timeToFirstByte').time
+      chart.guide().line({
+        start: ['redirect', start+ttfb],
+        end: ['loadEvent', start+ttfb],
+        lineStyle: {
+          stroke: '#999',
+          lineDash: [ 0, 2, 2 ],
+          lineWidth: 1
+        },
+        text: {
+          content: `TTFB - ${Math.round(ttfb)}ms`,
+          textAlign: 'left',
+          autoRotate: false,
+          offsetX: 105,
+          offsetY: -240
+        }
+      });
+
+      var domready = rawData.find(d => d.name === 'domContentLoaded').time
+      chart.guide().line({
+        start: ['redirect', start+domready],
+        end: ['loadEvent', start+domready],
+        lineStyle: {
+          stroke: '#999',
+          lineDash: [ 0, 2, 2 ],
+          lineWidth: 1
+        },
+        text: {
+          content: `DOMContentLoaded - ${Math.round(domready)}ms`,
+          textAlign: 'left',
+
+          autoRotate: false,
+          offsetX: 95,
+          offsetY: -160
+        }
+      });
+
+      // var fp = rawData.find(d => d.name === 'firstPaint').time
+      // chart.guide().line({
+      //   start: ['redirect', start+fp],
+      //   end: ['loadEvent', start+fp],
+      //   lineStyle: {
+      //     stroke: '#999',
+      //     lineDash: [ 0, 2, 2 ],
+      //     lineWidth: 1
+      //   },
+      //   text: {
+      //     content: `First Paint - ${Math.round(fp)}ms`,
+      //     textAlign: 'left',
+
+      //     autoRotate: false,
+      //     offsetX: 65,
+      //     offsetY: -220
+      //   }
+      // });
+
+
+      // var fcp = rawData.find(d => d.name === 'firstContentfulPaint').time
+      // chart.guide().line({
+      //   start: ['redirect', start+fcp],
+      //   end: ['loadEvent', start+fcp],
+      //   lineStyle: {
+      //     stroke: '#999',
+      //     lineDash: [ 0, 2, 2 ],
+      //     lineWidth: 1
+      //   },
+      //   text: {
+      //     content: `First Contentful Paint - ${Math.round(fcp)}ms`,
+      //     textAlign: 'left',
+      //     autoRotate: false,
+      //     offsetX: 98,
+      //     offsetY: -200
+      //   }
+      // });
+
+
+      var di = rawData.find(d => d.name === 'domInteractive').time
+      chart.guide().line({
+        start: ['redirect', start+di],
+        end: ['loadEvent', start+di],
+        lineStyle: {
+          stroke: '#999',
+          lineDash: [ 0, 2, 2 ],
+          lineWidth: 1
+        },
+        text: {
+          content: `Interactive - ${Math.round(di)}ms`,
+          textAlign: 'right',
+          autoRotate: false,
+          offsetX: 82,
+          offsetY: -180
+        }
+      });
+
+
+      var load = rawData.find(d => d.name === 'load').time
+      chart.guide().line({
+        start: ['redirect', start+load],
+        end: ['loadEvent', start+load],
+        lineStyle: {
+          stroke: '#999',
+          lineDash: [ 0, 2, 2 ],
+          lineWidth: 1
+        },
+        text: {
+          content: `load - ${Math.round(load)}ms`,
+          textAlign: 'right',
+          autoRotate: false,
+          offsetX: 52,
+          offsetY: -180
+        }
+      });
+
+
+      chart.axis('range', {
+        grid: null
+      }).coord().transpose().scale(1, -1);
+
+      var finalData = rawData.filter(d => d.durationType).map(d => ({...d, range: [d.start, d.end]}))
+      chart.source(finalData, {
+        range: {type: 'time', formatter(val) { return Math.round(val - start) + 'ms' }}
+      });
+      chart.interval().position('name*range')
+        .tooltip('time');
+
+      chart.render();
+
+      return chart;
     }
   </script>
 </body>
